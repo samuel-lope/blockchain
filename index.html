@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blockchain Interaction</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f4f4f9;
+        }
+        .container {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        .block {
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            padding: 30px;
+            background: #fff;
+            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+            flex: 1;
+            min-width: 300px;
+        }
+        .block h3 {
+            margin-top: 0;
+        }
+        label {
+            display: block;
+            margin: 15px 0 5px;
+        }
+        textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+            resize: vertical;
+        }
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+        .hash {
+            font-family: monospace;
+            background: #f9f9f9;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+        button {
+            padding: 12px 25px;
+            border: none;
+            border-radius: 5px;
+            background: #007bff;
+            color: white;
+            cursor: pointer;
+        }
+        button:hover {
+            background: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <h1>Blockchain</h1>
+
+    <div class="container">
+        <!-- Block 1 -->
+        <form id="block1" class="block">
+            <h3>Block 1</h3>
+            <label for="index1">Index:</label>
+            <input type="text" id="index1" value="0" readonly>
+
+            <label for="timestamp1">Timestamp:</label>
+            <input type="text" id="timestamp1" value="2024-01-01T00:00:00Z" readonly>
+
+            <label for="data1">Data:</label>
+            <textarea id="data1" placeholder="Enter data for Block 1" oninput="updateAllBlocks()"></textarea>
+
+            <label for="prevHash1">Previous Hash:</label>
+            <input type="text" id="prevHash1" readonly>
+
+            <label for="nonce1">Nonce:</label>
+            <input type="text" id="nonce1" value="0" oninput="updateAllBlocks()">
+
+            <label>Hash:</label>
+            <div id="hash1" class="hash">0000000000000000000</div>
+        </form>
+
+        <!-- Block 2 -->
+        <form id="block2" class="block">
+            <h3>Block 2</h3>
+            <label for="index2">Index:</label>
+            <input type="text" id="index2" value="1" readonly>
+
+            <label for="timestamp2">Timestamp:</label>
+            <input type="text" id="timestamp2" value="2024-01-01T00:00:00Z" readonly>
+
+            <label for="data2">Data:</label>
+            <textarea id="data2" placeholder="Enter data for Block 2" oninput="updateAllBlocks()"></textarea>
+
+            <label for="prevHash2">Previous Hash:</label>
+            <input type="text" id="prevHash2" readonly>
+
+            <label for="nonce2">Nonce:</label>
+            <input type="text" id="nonce2" value="0" oninput="updateAllBlocks()">
+
+            <label>Hash:</label>
+            <div id="hash2" class="hash">0000000000000000000</div>
+        </form>
+
+        <!-- Block 3 -->
+        <form id="block3" class="block">
+            <h3>Block 3</h3>
+            <label for="index3">Index:</label>
+            <input type="text" id="index3" value="2" readonly>
+
+            <label for="timestamp3">Timestamp:</label>
+            <input type="text" id="timestamp3" value="2024-01-01T00:00:00Z" readonly>
+
+            <label for="data3">Data:</label>
+            <textarea id="data3" placeholder="Enter data for Block 3" oninput="updateAllBlocks()"></textarea>
+
+            <label for="prevHash3">Previous Hash:</label>
+            <input type="text" id="prevHash3" readonly>
+
+            <label for="nonce3">Nonce:</label>
+            <input type="text" id="nonce3" value="0" oninput="updateAllBlocks()">
+
+            <label>Hash:</label>
+            <div id="hash3" class="hash">0000000000000000000</div>
+        </form>
+
+        <!-- Block 4 -->
+        <form id="block4" class="block">
+            <h3>Block 4</h3>
+            <label for="index4">Index:</label>
+            <input type="text" id="index4" value="3" readonly>
+
+            <label for="timestamp4">Timestamp:</label>
+            <input type="text" id="timestamp4" value="2024-01-01T00:00:00Z" readonly>
+
+            <label for="data4">Data:</label>
+            <textarea id="data4" placeholder="Enter data for Block 4" oninput="updateAllBlocks()"></textarea>
+
+            <label for="prevHash4">Previous Hash:</label>
+            <input type="text" id="prevHash4" readonly>
+
+            <label for="nonce4">Nonce:</label>
+            <input type="text" id="nonce4" value="0" oninput="updateAllBlocks()">
+
+            <label>Hash:</label>
+            <div id="hash4" class="hash">0000000000000000000</div>
+        </form>
+
+        <!-- Block 5 -->
+        <form id="block5" class="block">
+            <h3>Block 5</h3>
+            <label for="index5">Index:</label>
+            <input type="text" id="index5" value="4" readonly>
+
+            <label for="timestamp5">Timestamp:</label>
+            <input type="text" id="timestamp5" value="2024-01-01T00:00:00Z" readonly>
+
+            <label for="data5">Data:</label>
+            <textarea id="data5" placeholder="Enter data for Block 5" oninput="updateAllBlocks()"></textarea>
+
+            <label for="prevHash5">Previous Hash:</label>
+            <input type="text" id="prevHash5" readonly>
+
+            <label for="nonce5">Nonce:</label>
+            <input type="text" id="nonce5" value="0" oninput="updateAllBlocks()">
+
+            <label>Hash:</label>
+            <div id="hash5" class="hash">0000000000000000000</div>
+        </form>
+
+        <!-- Block 6 -->
+        <form id="block6" class="block">
+            <h3>Block 6</h3>
+            <label for="index6">Index:</label>
+            <input type="text" id="index6" value="5" readonly>
+
+            <label for="timestamp6">Timestamp:</label>
+            <input type="text" id="timestamp6" value="2024-01-01T00:00:00Z" readonly>
+
+            <label for="data6">Data:</label>
+            <textarea id="data6" placeholder="Enter data for Block 6" oninput="updateAllBlocks()"></textarea>
+
+            <label for="prevHash6">Previous Hash:</label>
+            <input type="text" id="prevHash6" readonly>
+
+            <label for="nonce6">Nonce:</label>
+            <input type="text" id="nonce6" value="0" oninput="updateAllBlocks()">
+
+            <label>Hash:</label>
+            <div id="hash6" class="hash">0000000000000000000</div>
+        </form>
+    </div>
+
+    <script>
+        async function generateSHA256Hash(data) {
+            const encoder = new TextEncoder();
+            const dataBuffer = encoder.encode(data);
+            const hashBuffer = await crypto.subtle.digest("SHA-256", dataBuffer);
+            return Array.from(new Uint8Array(hashBuffer))
+                .map(b => b.toString(16).padStart(2, "0"))
+                .join("");
+        }
+
+        async function updateBlock(index) {
+            const data = document.getElementById(`data${index}`).value;
+            const nonce = document.getElementById(`nonce${index}`).value;
+            const prevHash = document.getElementById(`prevHash${index}`).value || "";
+            const combinedData = prevHash + data + nonce;
+            const hash = await generateSHA256Hash(combinedData);
+            document.getElementById(`hash${index}`).textContent = hash;
+            return hash;
+        }
+
+        async function updateAllBlocks() {
+            let prevHash = await updateBlock(1);
+            document.getElementById("prevHash2").value = prevHash;
+
+            for (let i = 2; i <= 6; i++) {
+                prevHash = await updateBlock(i);
+                if (i < 6) {
+                    document.getElementById(`prevHash${i + 1}`).value = prevHash;
+                }
+            }
+        }
+
+        // Set initial random hash for Block 1's Previous Hash
+        async function setInitialHash() {
+            const initialHash = await generateSHA256Hash("Genesis Block");
+            document.getElementById("prevHash1").value = initialHash;
+            updateAllBlocks();
+        }
+
+        setInitialHash();
+    </script>
+</body>
+</html>
